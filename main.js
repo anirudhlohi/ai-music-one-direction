@@ -3,6 +3,9 @@ leftWristX = 0;
 leftWristY = 0;
 rightWrisX = 0;
 rightWristY = 0;
+scoreLeftWrist = 0;
+status_song1 = "";
+staus_song2 = "";
 function preload(){
 song1 = loadSound("music.mp3");
 song2 = loadSound("music2.mp3");
@@ -21,6 +24,21 @@ poseNet.on("pose",gotPoses);
 
 function draw(){
   image(video, 0, 0, 600,500);
+
+  fill("#f70800");
+  stroke("#f70000");
+  
+  status_song1 = song1.isPlaying();
+  staus_song2 = song2.isPlaying();
+  if(scoreLeftWrist>0.2){
+    circle(leftWristX,leftWristY,20);
+    song2.stop();
+    if(status_song1 == false){
+song1.play();
+document.getElementById("song_playing").innerHTML = "Playing - Harry Potter";
+    }
+  }
+  
 }
 function modelLoaded(){
   console.log("Model Loaded")
@@ -35,5 +53,9 @@ function gotPoses(results){
    rightWristX = results[0].pose.rightWrist.x;
    rightWristY = results[0].pose.rightWrist.y;
 console.log(rightWristX , rightWristY);
+
+
+scoreLeftWrist = results[0].pose.keypoints[9].score;
+console.log("Score Left Wrist = "+ scoreLeftWrist);
   }
 }
