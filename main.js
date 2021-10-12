@@ -4,6 +4,7 @@ leftWristY = 0;
 rightWrisX = 0;
 rightWristY = 0;
 scoreLeftWrist = 0;
+scoreRightWrist = 0;
 status_song1 = "";
 staus_song2 = "";
 function preload(){
@@ -38,6 +39,18 @@ song1.play();
 document.getElementById("song_playing").innerHTML = "Playing - Harry Potter";
     }
   }
+
+  
+  
+ 
+  if(scoreRightWrist>0.2){
+    circle(rightWristX,rightWristY,20);
+    song1.stop();
+    if(status_song2 == false){
+song2.play();
+document.getElementById("song_playing").innerHTML = "Playing - Peter Pan";
+    }
+  }
   
 }
 function modelLoaded(){
@@ -56,6 +69,7 @@ console.log(rightWristX , rightWristY);
 
 
 scoreLeftWrist = results[0].pose.keypoints[9].score;
+scoreRightWrist = results[0].pose.keypoints[10].score;
 console.log("Score Left Wrist = "+ scoreLeftWrist);
   }
 }
