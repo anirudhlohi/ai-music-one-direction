@@ -6,7 +6,7 @@ rightWristY = 0;
 scoreLeftWrist = 0;
 scoreRightWrist = 0;
 status_song1 = "";
-staus_song2 = "";
+status_song2 = "";
 function preload(){
 song1 = loadSound("music.mp3");
 song2 = loadSound("music2.mp3");
